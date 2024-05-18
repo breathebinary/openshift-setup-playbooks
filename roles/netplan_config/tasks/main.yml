@@ -1,0 +1,16 @@
+- name: Include hosts vars
+  include_vars:
+    file: "{{ role_path }}/files/dns_servers.yml"
+
+- name: Create Netplan configuration with custom DNS
+  become: true
+  template:
+    src: "{{ role_path }}/templates/netplan.yaml.j2"
+    dest: /etc/netplan/01-netcfg.yaml
+    owner: root
+    group: root
+    mode: 0600
+
+- name: Apply Netplan configuration
+  become: true
+  command: netplan apply

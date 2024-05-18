@@ -1,0 +1,26 @@
+---
+# tasks file for apache_config
+- name: Update apt package cache
+  become: true
+  apt:
+    update_cache: yes
+
+- name: Install Apache package
+  become: true
+  apt:
+    name: apache2
+    state: present
+
+#- name: Copy HAProxy configuration template
+#  become: true
+#  template:
+#    src: "{{ role_path }}/files/haproxy.cfg.j2"
+#    dest: /etc/haproxy/haproxy.cfg
+#    mode: 0644
+
+- name: Ensure Apache service is running and enabled
+  become: true
+  service:
+    name: apache2
+    state: restarted
+    enabled: yes

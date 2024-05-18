@@ -1,0 +1,6 @@
+---
+- name: Setup openshift ingress
+  hosts: all
+  gather_facts: no
+  roles:
+    - netplan_config

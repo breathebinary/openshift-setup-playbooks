@@ -1,0 +1,68 @@
+---
+# tasks file for bind_config
+- name: Update apt package cache
+  become: true
+  apt:
+    update_cache: yes
+
+- name: Install bind package
+  become: true
+  apt:
+    name: bind9
+    state: present
+
+- name: Include hosts vars
+  include_vars:
+    file: "/home/ubuntu/ansible-playbooks/inventories/zones_data.yaml"
+    name: hosts_data
+ 
+- name: Create named.conf.options
+  become: true
+  template:
+    src: "{{ role_path }}/files/named.conf.options"
+    dest: /etc/bind/named.conf.options
+    owner: root
+    group: bind
+
+- name: Create named.conf.local
+  become: true
+  template:
+    src: "{{ role_path }}/files/named.conf.local"
+    dest: /etc/bind/named.conf.local
+    owner: root
+    group: bind
+
+- name: Create named.conf.openshift-zones
+  become: true
+  template:
+    src: "{{ role_path }}/templates/named.conf.openshift-zones.j2"
+    dest: "/etc/bind/named.conf.openshift-zones"
+    owner: root
+    group: bind
+  loop: "{{ hosts_data.configs }}"
+
+- name: Create domain zone files
+  become: true
+  template:
+    src: "{{ role_path }}/templates/lookup.conf.j2"
+    dest: "/etc/bind/db.{{ item.zone }}"
+    owner: root
+    group: root
+  loop: "{{ hosts_data.configs }}"
+
+- name: Create reverse lookup zone files
+  become: true
+  template:
+    src: "{{ role_path }}/templates/reverse_lookup.conf.j2"
+#    dest: "/etc/bind/db.{{ item.reverse_zone.split('.')[-2] }}"
+    dest: "/etc/bind/db.{{ item.reverse_zone }}"
+    owner: root
+    group: root
+  loop: "{{ hosts_data.configs }}"
+
+- name: Ensure named service is running and enabled
+  become: true
+  service:
+    name: named
+    state: restarted
+    enabled: yes

@@ -1,0 +1,13 @@
+$TTL 1W
+@    IN    SOA    {{ item.ns1 }}. {{ item.admin }} (
+                 {{ item.serial }} ; Serial
+                 {{ item.refresh }}       ; Refresh
+                 {{ item.retry }}       ; Retry
+                 {{ item.expire }}     ; Expire
+                 {{ item.ttl }}      ; Minimum TTL
+                 )
+     IN    NS     {{ item.ns1 }}.
+ 
+{% for server in item.servers %}
+{{ server.ip }}   IN    PTR    {{ server.name }}.{{ item.zone }}.
+{% endfor %}
