@@ -20,4 +20,3 @@
   systemd:
     name: systemd-networkd
     state: restarted
-
