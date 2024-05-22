@@ -1,6 +1,6 @@
 ---
 - name: Setup Openshift Gateway and Ingress
-  hosts: gateway_servers, ingress_servers
+  hosts: gateway, ingress
   gather_facts: no
   roles:
     - haproxy_config
