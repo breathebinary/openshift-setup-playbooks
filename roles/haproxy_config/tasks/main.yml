@@ -22,7 +22,7 @@
 - name: Copy HAProxy configuration template
   become: true
   template:
-    src: "{{ role_path }}/files/haproxy.cfg.j2"
+    src: "{{ role_path }}/templates/haproxy.cfg.j2"
     dest: /etc/haproxy/haproxy.cfg
     mode: 0644
 
