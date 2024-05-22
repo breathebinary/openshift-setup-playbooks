@@ -1,7 +1,3 @@
-#- name: Include hosts vars
-#  include_vars:
-#    file: "{{ role_path }}/files/dns_servers.yml"
-
 - name: Set dns_servers variable
   set_fact:
     dns_servers: "{{ openshift.dns.servers }}"

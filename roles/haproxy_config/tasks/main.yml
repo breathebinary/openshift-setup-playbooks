@@ -1,5 +1,13 @@
 ---
 # tasks file for haproxy_config
+- name: Set masters variable
+  set_fact:
+    masters: "{{ openshift.cluster.masters }}"
+
+- name: Set workers variable
+  set_fact:
+    workers: "{{ openshift.cluster.workers }}"
+
 - name: Update apt package cache
   become: true
   apt:
