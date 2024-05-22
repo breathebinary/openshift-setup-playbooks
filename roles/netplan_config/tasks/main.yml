@@ -14,3 +14,10 @@
 - name: Apply Netplan configuration
   become: true
   command: netplan apply
+
+- name: Restart network
+  become: true
+  systemd:
+    name: systemd-networkd
+    state: restarted
+
