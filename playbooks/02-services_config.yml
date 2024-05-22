@@ -1,6 +1,6 @@
 ---
 - name: Setup openshift support infrastructure
-  hosts: services_hosts
+  hosts: services
   gather_facts: no
   roles:
     - apache_config
