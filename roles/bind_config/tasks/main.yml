@@ -13,7 +13,7 @@
 
 - name: Set zones variable
   set_fact:
-    zones: "{{ openshift-cluster.zones }}"
+    zones: "{{ openshift.cluster.zones }}"
  
 - name: Create named.conf.options
   become: true
