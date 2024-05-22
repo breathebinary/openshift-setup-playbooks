@@ -1,13 +1,19 @@
-openshift-cluster:
-  masters:
-    - ocp4-pb6g7-master-0.ocp4
-    - ocp4-pb6g7-master-1.ocp4
-    - ocp4-pb6g7-master-2.ocp4
-  
-  workers:
-    - ocp4-pb6g7-compute-0.ocp4
-    - ocp4-pb6g7-compute-1.ocp4
-    - ocp4-pb6g7-compute-2.ocp4
+openshift:
+  cluster:
+    masters:
+      - ocp4-pb6g7-master-0.ocp4
+      - ocp4-pb6g7-master-1.ocp4
+      - ocp4-pb6g7-master-2.ocp4
+    
+    workers:
+      - ocp4-pb6g7-compute-0.ocp4
+      - ocp4-pb6g7-compute-1.ocp4
+      - ocp4-pb6g7-compute-2.ocp4
+  dns:
+    servers:
+      - 192.168.1.6
+      - 8.8.8.8
+      - 8.8.4.4
 
   zones:
     - zone: "keralauniversity.edu"
@@ -65,8 +71,4 @@ openshift-cluster:
       
         - name: "ocp4-pb6g7-compute-2.ocp4"
           ip: "192.168.2.33"
-  dns-servers:
-    - 192.168.1.6
-    - 8.8.8.8
-    - 8.8.4.4
   

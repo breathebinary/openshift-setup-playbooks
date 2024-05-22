@@ -4,7 +4,7 @@
 
 - name: Set dns_servers variable
   set_fact:
-    dns_servers: "{{ openshift-cluster.dns-servers }}"
+    dns_servers: "{{ openshift.dns.servers }}"
 
 - name: Create Netplan configuration with custom DNS
   become: true
