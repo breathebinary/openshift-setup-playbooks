@@ -1,13 +1,13 @@
-{% for config in hosts_data.configs %}
+{% for zone in zones %}
 
-zone "{{ config.zone }}" {
+zone "{{ zone.zone }}" {
     type master;
-    file "/etc/bind/db.{{ config.zone }}";
+    file "/etc/bind/db.{{ zone.zone }}";
 };
 
-zone "{{ config.reverse_zone }}" {
+zone "{{ zone.reverse_zone }}" {
     type master;
-    file "/etc/bind/db.{{ config.reverse_zone }}";
+    file "/etc/bind/db.{{ zone.reverse_zone }}";
 };
 
 {% endfor %}
