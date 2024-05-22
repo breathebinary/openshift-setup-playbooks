@@ -1,12 +1,19 @@
 all:
-  hosts:
   children:
     services:
       hosts:
-        - 192.168.1.6
+        services.kucc.org:
+          ansible_host: 192.168.1.6
     gateway:
       hosts:
-        - 192.168.1.9
+        gateway.kucc.org:
+          ansible_host: 192.168.1.9
     ingress:
       hosts:
-        - 192.168.1.10
+        ingress.kucc.org:
+          ansible_host: 192.168.1.10
+    all_hosts:
+      hosts:
+        services.kucc.org:
+        gateway.kucc.org:
+        ingress.kucc.org:
