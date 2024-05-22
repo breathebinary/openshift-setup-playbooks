@@ -1,6 +1,10 @@
-- name: Include hosts vars
-  include_vars:
-    file: "{{ role_path }}/files/dns_servers.yml"
+#- name: Include hosts vars
+#  include_vars:
+#    file: "{{ role_path }}/files/dns_servers.yml"
+
+- name: Set dns_servers variable
+  set_fact:
+    dns_servers: "{{ openshift-cluster.dns-servers }}"
 
 - name: Create Netplan configuration with custom DNS
   become: true

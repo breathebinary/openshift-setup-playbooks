@@ -11,10 +11,9 @@
     name: bind9
     state: present
 
-- name: Include hosts vars
-  include_vars:
-    file: "/home/ubuntu/ansible-playbooks/inventories/zones_data.yaml"
-    name: hosts_data
+- name: Set zones variable
+  set_fact:
+    zones: "{{ openshift-cluster.zones }}"
  
 - name: Create named.conf.options
   become: true
@@ -39,7 +38,7 @@
     dest: "/etc/bind/named.conf.openshift-zones"
     owner: root
     group: bind
-  loop: "{{ hosts_data.configs }}"
+  loop: "{{ zones }}"
 
 - name: Create domain zone files
   become: true
@@ -48,7 +47,7 @@
     dest: "/etc/bind/db.{{ item.zone }}"
     owner: root
     group: root
-  loop: "{{ hosts_data.configs }}"
+  loop: "{{ zones }}"
 
 - name: Create reverse lookup zone files
   become: true
@@ -58,7 +57,7 @@
     dest: "/etc/bind/db.{{ item.reverse_zone }}"
     owner: root
     group: root
-  loop: "{{ hosts_data.configs }}"
+  loop: "{{ zones }}"
 
 - name: Ensure named service is running and enabled
   become: true

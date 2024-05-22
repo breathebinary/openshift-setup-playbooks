@@ -1,0 +1,72 @@
+openshift-cluster:
+  masters:
+    - ocp4-pb6g7-master-0.ocp4
+    - ocp4-pb6g7-master-1.ocp4
+    - ocp4-pb6g7-master-2.ocp4
+  
+  workers:
+    - ocp4-pb6g7-compute-0.ocp4
+    - ocp4-pb6g7-compute-1.ocp4
+    - ocp4-pb6g7-compute-2.ocp4
+
+  zones:
+    - zone: "keralauniversity.edu"
+      reverse_zone: "20.20.10.in-addr.arpa"
+      ns1: "ns1.keralauniversity.edu"
+      admin: "admin"
+      serial: 2022051001
+      refresh: 3600
+      retry: 1800
+      expire: 604800
+      ttl: 86400
+      servers:    
+        - name: "ns1"
+          ip: "192.168.1.6"
+
+        - name: "ku-vcenter"
+          ip: "10.20.20.60"
+
+    - zone: "kucc.org"
+      reverse_zone: "1.168.192.in-addr.arpa"
+      ns1: "ns1.kucc.org"
+      admin: "admin"
+      serial: 2022051002
+      refresh: 3600
+      retry: 1800
+      expire: 604800
+      ttl: 86400
+      servers:
+        - name: "ns1"
+          ip: "192.168.1.6"
+      
+        - name: "api.ocp4"
+          ip: "192.168.1.9"
+      
+        - name: "api-int.ocp4"
+          ip: "192.168.1.10"
+      
+        - name: "bootstrap.ocp4"
+          ip: "192.168.1.20"
+      
+        - name: "ocp4-pb6g7-master-0.ocp4"
+          ip: "192.168.1.21"
+      
+        - name: "ocp4-pb6g7-master-1.ocp4"
+          ip: "192.168.1.22"
+      
+        - name: "ocp4-pb6g7-master-2.ocp4"
+          ip: "192.168.1.23"
+      
+        - name: "ocp4-pb6g7-compute-0.ocp4"
+          ip: "192.168.2.31"
+      
+        - name: "ocp4-pb6g7-compute-1.ocp4"
+          ip: "192.168.2.32"
+      
+        - name: "ocp4-pb6g7-compute-2.ocp4"
+          ip: "192.168.2.33"
+  dns-servers:
+    - 192.168.1.6
+    - 8.8.8.8
+    - 8.8.4.4
+  

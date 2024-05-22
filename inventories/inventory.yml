@@ -1,0 +1,12 @@
+all:
+  hosts:
+  children:
+    services:
+      hosts:
+        - 192.168.1.6
+    gateway:
+      hosts:
+        - 192.168.1.9
+    ingress:
+      hosts:
+        - 192.168.1.10
