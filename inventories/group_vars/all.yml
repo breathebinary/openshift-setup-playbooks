@@ -1,14 +1,14 @@
 openshift:
   cluster:
     masters:
-      - ocp4-pb6g7-master-0.ocp4
-      - ocp4-pb6g7-master-1.ocp4
-      - ocp4-pb6g7-master-2.ocp4
+      - ocp4-pb6g7-master-0.ocp4.kucc.org
+      - ocp4-pb6g7-master-1.ocp4.kucc.org
+      - ocp4-pb6g7-master-2.ocp4.kucc.org
     
     workers:
-      - ocp4-pb6g7-compute-0.ocp4
-      - ocp4-pb6g7-compute-1.ocp4
-      - ocp4-pb6g7-compute-2.ocp4
+      - ocp4-pb6g7-compute-0.ocp4.kucc.org
+      - ocp4-pb6g7-compute-1.ocp4.kucc.org
+      - ocp4-pb6g7-compute-2.ocp4.kucc.org
   dns:
     servers:
       - 192.168.1.6
