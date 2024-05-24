@@ -35,6 +35,14 @@
     owner: root
     mode: 0644
 
+- name: Copy metadata.json
+  become: true
+  template:
+    src: "{{ role_path }}/files/metadata.json"
+    dest: /var/www/html/okd/
+    owner: root
+    mode: 0644
+
 - name: Ensure Apache service is running and enabled
   become: true
   service:
