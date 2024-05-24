@@ -11,6 +11,30 @@
     name: apache2
     state: present
 
+- name: Copy bootstrap.ign
+  become: true
+  template:
+    src: "{{ role_path }}/files/bootstrap.ign"
+    dest: /var/www/html/okd/
+    owner: root
+    mode: 0644
+
+- name: Copy master.ign
+  become: true
+  template:
+    src: "{{ role_path }}/files/master.ign"
+    dest: /var/www/html/okd/
+    owner: root
+    mode: 0644
+
+- name: Copy worker.ign
+  become: true
+  template:
+    src: "{{ role_path }}/files/worker.ign"
+    dest: /var/www/html/okd/
+    owner: root
+    mode: 0644
+
 - name: Ensure Apache service is running and enabled
   become: true
   service:
